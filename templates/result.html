@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Color Palette App{% endblock %}
+
+{% block content %}
+<section class="vh-100">
+    <title>Color Palette App</title>
+    {% set list = color_palette %}
+    <h1>Color Palette Result from this Image <i class="fa-solid fa-palette fa-xl" style="color:{{ '#%02x%02x%02x' % list[0] }};"></i></h1>
+
+    <img src="{{ image_path }}" alt="Uploaded Image" style="max-width: 100%; height: auto;">
+
+    <h2>Color Palette:</h2>
+<!--    <ul class="list-group list-group-horizontal">-->
+<!--        {% for color in color_palette %}-->
+<!--            <li style="background-color:rgb{{ color }};">{{ color }}</li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+
+    <div class="palette">
+        {% for color in color_palette %}
+        <div class="place c" style="background-color:rgb{{ color }};">
+            <a color = "white" href="https://colors.to/{{ '%02x%02x%02x' % color }}">{{ '#%02x%02x%02x' % color }}</a>
+            <span onclick="copy(this)" data-copy={{ color }}></span>
+        </div>
+        {% endfor %}
+    </div>
+
+
+</section>
+{% endblock %}
